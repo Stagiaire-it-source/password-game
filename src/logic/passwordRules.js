@@ -6,21 +6,15 @@ function checkPassword(value) {
     // basic rules
     if(!val) return "Password is required";
     if(val.length < 8) return "Password must be at least 8 characters";
-
-    // uppercase rules
-    if (!/[A-Z]/.test(val)) return "Must include an uppercase letter";
-    if ((val.match(/[A-Z]/g) || []).length < 2) return "Must include 2 uppercase letters";
-    if ((val.match(/[A-Z]/g) || []).length < 3) return "Must include 3 uppercase letters";
-
-    if (!/[0-9]/.test(val)) return "Must include at least 1 number";
-    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(val)) return "Must include at least 1 special character";
+    if (!/[A-Z]/.test(val)) return "Must include at least one uppercase letter";
+    if (!/[0-9]/.test(val)) return "Must include at least one number";
+    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(val)) return "Must include at least one special character";
     
     // number rules
     const numbers = val.match(/[0-9]/g)?.map(Number) || [];
     if (numbers.includes(6)) return "Numbers cannot include 6";
     if (numbers.includes(7)) return "Numbers cannot include 7";
 
-    
     const sum = numbers.reduce((a, b) => a + b, 0);
     if (sum !== 13) return "Numbers must add up to 13";
 
@@ -37,9 +31,34 @@ function checkPassword(value) {
     const planets = ["mercury","venus","earth","mars","jupiter","saturn","uranus","neptune" ];
     if (!planets.some(p => lowerVal.includes(p))) return "Must include a planet of our solar system";
 
+    // seasons
+    const seasons = ["spring","summer","autumn","fall","winter"];
+    if (!seasons.some(s => lowerVal.includes(s))) return "Must include a season of the year";
+
+    // zodiac signs
+    const zodiacSigns = ["aries","taurus","gemini","cancer","leo","virgo",
+    "libra","scorpio","sagittarius","capricorn","aquarius","pisces"];
+    if (!zodiacSigns.some(z => lowerVal.includes(z))) return "Must include a zodiac sign";
+    
+    // colors
+    const colors = ["red","orange","yellow","green","blue","indigo","violet"];
+    if (!colors.some(c => lowerVal.includes(c))) return "Must include a color of the rainbow";
+
     // animal requirement
     if(!lowerVal.includes("cat"))
     return "Must include the domesticated feline species which is a small, typically furry, carnivorous mammal that is often kept as a pet or for pest control purposes, and is known for its agility, playfulness, and ability to form social bonds with humans and other animals.";
+    
+    // cardinal directions
+    const cardinalDirections = ["north","south","east","west"];
+    if (!cardinalDirections.some(d => lowerVal.includes(d))) return "Must include a cardinal direction";
+
+    // HTTP methods
+    const httpMethods = ["get","post","put","delete","patch","head","options","trace","connect"];
+    if (!httpMethods.some(m => lowerVal.includes(m))) return "Must include an HTTP method";
+
+    // musical notes
+    const musicalNotes = ["do","re","mi","fa","sol","la","ti"];
+    if (!musicalNotes.some(n => lowerVal.includes(n))) return "Must include a musical note";
 
     // apple
     if (!lowerVal.includes("apple"))
@@ -47,4 +66,11 @@ function checkPassword(value) {
 
   return "";
 }
-export default checkPassword
+
+function confirmPassword(value, password) {
+    if (!value) return "Please confirm your password";
+    if (value !== password) return "Passwords do not match";
+    if (value === password) return "Password confirmed";
+  return "";
+}
+export { checkPassword, confirmPassword }; 
