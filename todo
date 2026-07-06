@@ -15,18 +15,13 @@
         - require :
         - 1 more upper case
         - 1 more upper case for good luck
-        - numbers should add up to 300
+        - numbers should add up to something
         - numbers cannot include 6 or 7
-        - must include a punctuation mark 
-            ... that appears exactly twice
-            ... but not consecutively
-        - must include a prime number that is also a Fibonacci number and superior to 50
-
         - include a month of the year
         - must include : (the word apple)
             the precise lexical identifier of the universally recognizable pomological specimen, typically exhibiting a red or green chromatic range and classified within the species Malus domestica, which, according to culturally propagated and scientifically unverified anecdotal accounts, is said to have descended upon the cranial region of a historically eminent English-born natural philosopher, mathematician, astronomer, and alchemist of the 17th–18th century scientific milieu, namely an individual of notable scholarly repute within the early Royal Society tradition, whose contributions to classical mechanics and the mathematical description of universal gravitation have been extensively documented, thereby purportedly contributing to his subsequent theoretical articulation of gravitational force.
         
-        - must include a planet
+        - other
     
 
     - confirm password 
