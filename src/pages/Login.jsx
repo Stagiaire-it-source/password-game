@@ -6,8 +6,7 @@ import SubmitButton from '../components/SubmitButton'
 import checkUsername from '../logic/usernameRules'
 import checkPassword from '../logic/passwordRules'
 
-function Login() {
-    
+function Login({ onSuccess }) {
 
     const [username, setUsername] = useState('');
     const [usernameChecks, setUsernameChecks] = useState([]);
@@ -30,11 +29,13 @@ function Login() {
     const hasError = !isDone(usernameChecks) || !isDone(passwordChecks);
     if (hasError) return;
 
+    onSuccess();
     };
 
     return (
-            <div>
-        <h1>Login</h1>
+<div className="login-page">
+    <div className="login-card">
+                <h1>Login</h1>
         <form onSubmit={handleSubmit}>
 
             <UsernameInput value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -61,7 +62,8 @@ function Login() {
             <SubmitButton label ="Login" />
         </form>
 
-            </div>
+            </div>            </div>
+
         );
     }
 export default Login
