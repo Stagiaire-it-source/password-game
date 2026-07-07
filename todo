@@ -39,4 +39,16 @@
         - include their links  
 
     - make the presentation more immersive, more visual, more matching
-    - 
+
+    - more password requirements :
+
+    - Digits must be in ascending order.
+    - Must contain today's year.
+    - Password length must be a prime number.
+    - Password length must equal the number of vowels × 4.
+    - Every special character must be surrounded by vowels.
+    - Must contain a country bordering France.
+    - Must contain a Git command
+    
+    - Must include your favorite color. (The game never tells you what it thinks your favorite color is.)
+    - A timer counts down, but every satisfied rule adds 5 seconds.

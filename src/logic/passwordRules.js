@@ -9,7 +9,19 @@ const colors = ["red","orange","yellow","green","blue","indigo","violet"];
 const cardinalDirections = ["north","south","east","west"];
 const httpMethods = ["get","post","put","delete","patch","head","options","trace","connect"];
 const musicalNotes = ["do","re","mi","fa","sol","la","ti"];
- 
+const vowels = ["a","e","i","o","u"];
+const franceNeighbors = ["belgium","luxembourg","germany","switzerland","italy","monaco","spain","andorra"];
+const gitCommands = ["add","commit","push","pull","clone","checkout","branch","merge",
+  "rebase","status","log","fetch","init","diff","stash","reset","revert","tag"];
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+
 const rules = [
   { id: "required", label: "Password is required", test: (v) => v.length > 0 },
   { id: "length", label: "At least 8 characters", test: (v) => v.length >= 8 },
@@ -43,21 +55,75 @@ const rules = [
     label: "Must include the precise lexical identifier of the universally recognizable pomological specimen, typically exhibiting a red or green chromatic range and classified within the species Malus domestica, which, according to culturally propagated and scientifically unverified anecdotal accounts, is said to have descended upon the cranial region of a historically eminent English-born natural philosopher, mathematician, astronomer, and alchemist of the 17th–18th century scientific milieu, namely an individual of notable scholarly repute within the early Royal Society tradition, whose contributions to classical mechanics and the mathematical description of universal gravitation have been extensively documented, thereby purportedly contributing to his subsequent theoretical articulation of gravitational force.",
     test: (v) => v.toLowerCase().includes("apple"),
   },
+  {
+    id: "ascendingDigits",
+    label: "Digits must be in ascending order",
+    test: (v) => {
+      const nums = v.match(/[0-9]/g)?.map(Number) || [];
+      for (let i = 1; i < nums.length; i++) {
+        if (nums[i] < nums[i - 1]) return false;
+      }
+      return true;
+    },
+  },
+  {
+    id: "primeLength",
+    label: "Password length must be a prime number",
+    test: (v) => isPrime(v.length),
+  },
+  {
+    id: "specialSurroundedByVowels",
+    label: "Every special character must be surrounded by vowels",
+    test: (v) => {
+      const specialRegex = /[!@#$%^&*(),.?":{}|<>]/;
+      for (let i = 0; i < v.length; i++) {
+        if (specialRegex.test(v[i])) {
+          const prev = v[i - 1];
+          const next = v[i + 1];
+          if (!prev || !next) return false;
+          if (!vowels.includes(prev.toLowerCase()) || !vowels.includes(next.toLowerCase())) {
+            return false;
+          }
+        }
+      }
+      return true;
+    },
+  },
+  {
+    id: "franceNeighbor",
+    label: "Must contain a country bordering France",
+    test: (v) => franceNeighbors.some((c) => v.toLowerCase().includes(c)),
+  },
+  {
+    id: "gitCommand",
+    label: "Must contain a Git command",
+    test: (v) => gitCommands.some((c) => v.toLowerCase().includes(c)),
+  },
 ];
- 
+
 // Returns every rule up through (and including) the first one still failing.
 // Rules beyond that point stay hidden — this is what gives the "reveal as you go" feel.
 function checkPassword(value) {
   const val = value.trim();
-  const results = [];
- 
+
+  const visibleRules = [];
+
   for (const rule of rules) {
     const valid = rule.test(val);
-    results.push({ id: rule.id, label: rule.label, valid });
+
+    visibleRules.push({
+      id: rule.id,
+      label: rule.label,
+      valid,
+    });
+
     if (!valid) break;
   }
- 
-  return results;
+
+  const failed = visibleRules.filter((rule) => !rule.valid).reverse();
+  const passed = visibleRules.filter((rule) => rule.valid);
+
+  return [...failed, ...passed];
 }
- 
+
 export default checkPassword;
