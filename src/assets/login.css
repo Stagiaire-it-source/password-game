@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap');
+ 
+:root {
+  --ink: #14181f;
+  --ink-soft: #1c222c;
+  --paper: #eef0ea;
+  --brass: #b98b3e;
+  --brass-light: #d9ad63;
+  --error: #c1503f;
+  --error-bg: #fbeae7;
+  --success: #3f7d58;
+  --success-bg: #e8f0ea;
+  --muted: #7a8290;
+  --border: #2a303c;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 3rem 2.5rem 2.5rem;
+  background: var(--paper);
+  border-left: 3px solid var(--brass);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+}
+
+.login-card h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 2.1rem;
+  color: var(--ink);
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+ 
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+ 
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #d4d2c8;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: var(--muted);
+}
+ 
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(185, 139, 62, 0.22);
+}
+ 
+.password-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+ 
+.password-wrapper input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+ 
+.toggle-password {
+  flex-shrink: 0;
+  padding: 0 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #e2e0d4;
+  border: 1px solid #d4d2c8;
+  border-left: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+ 
+.toggle-password:hover {
+  background: var(--brass-light);
+}
+ 
+.toggle-password:focus-visible,
+button[type="submit"]:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+ 
+/* Emphasized error state, still neutral in palette */
+.login-card .error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -0.3rem 0 0;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--error);
+  background: var(--error-bg);
+  border-left: 3px solid var(--error);
+  border-radius: 2px;
+  animation: errorIn 0.25s ease;
+}
+ 
+.error::before {
+  content: "!";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--error);
+  border-radius: 50%;
+}
+ 
+@keyframes errorIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+ 
+.password-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: -0.3rem 0 0;
+}
+ 
+.login-card .success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--success);
+  background: var(--success-bg);
+  border-left: 3px solid var(--success);
+  border-radius: 2px;
+  animation: errorIn 0.25s ease;
+}
+ 
+.success::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--success);
+  border-radius: 50%;
+}
+ 
+.login-card button[type="submit"] {
+  margin-top: 0.6rem;
+  padding: 0.9rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  background: var(--ink);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+ 
+button[type="submit"]:hover {
+  background: var(--brass);
+  color: var(--ink);
+}
+ 
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+ 
+@media (max-width: 420px) {
+  body > div {
+    max-width: 100%;
+    margin: 1rem;
+    padding: 2.5rem 1.5rem 2rem;
+  }
+}

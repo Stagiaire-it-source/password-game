@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
-// import './App.css'
+import { useState } from 'react'
+import Login from './pages/Login'
+import Landing from './pages/Landing'
 
 function App() {
-  
+  const [step, setStep] = useState('login') // 'login' | 'logged'
 
-  return (
-    <h1>Login</h1>
-  )
+  if (step === 'logged') {
+    return <Landing />
+  }
+
+  return <Login onSuccess={() => setStep('logged')} />
 }
 
 export default App

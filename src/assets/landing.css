@@ -1,0 +1,434 @@
+/* ---------- base / hero ---------- */
+
+.landing {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+
+  /* Break out of any parent container that was sized/padded for the
+     login form (e.g. a `.login-page { max-width: 400px }` wrapper). */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+/* Prevent the 100vw trick above from causing a horizontal scrollbar */
+.landing {
+  overflow-x: hidden;
+}
+
+.landing-hero {
+  padding: 6rem 1.5rem 4rem;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.landing-hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.landing-sub {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.showcase-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.showcase-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.75rem;
+}
+
+.showcase h2 {
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  margin: 0 0 0.25rem;
+}
+
+.showcase-role {
+  opacity: 0.75;
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem;
+}
+
+.showcase-blurb {
+  line-height: 1.65;
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+  max-width: 46ch;
+}
+
+.showcase-link {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.showcase-mock {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .showcase-inner {
+    grid-template-columns: 1fr;
+  }
+  .showcase-mock {
+    order: -1;
+  }
+}
+
+.landing-footer {
+  text-align: center;
+  padding: 3rem 1.5rem 5rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* ---------- 01 Lynn Fisher: playful, hand-built, pastel ---------- */
+
+.showcase-lynn {
+  background: #fff7f0;
+}
+.showcase-lynn h2 {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  color: #e8598a;
+}
+.showcase-lynn .showcase-link {
+  color: #e8598a;
+}
+.mock-lynn {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffe9d6, #ffd6e8);
+  position: relative;
+}
+.mock-blob {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite;
+}
+.mock-blob-1 {
+  width: 90px;
+  height: 90px;
+  background: #ffb703;
+  top: 20%;
+  left: 15%;
+}
+.mock-blob-2 {
+  width: 60px;
+  height: 60px;
+  background: #e8598a;
+  top: 50%;
+  left: 55%;
+  animation-delay: 0.6s;
+}
+.mock-blob-3 {
+  width: 40px;
+  height: 40px;
+  background: #6ec6ca;
+  top: 65%;
+  left: 25%;
+  animation-delay: 1.2s;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ---------- 02 Josh Comeau: soft gradient, friendly, bouncy ---------- */
+
+.showcase-josh {
+  background: linear-gradient(180deg, #f6f0ff, #eaf6ff);
+}
+.showcase-josh h2 {
+  color: #7c3aed;
+}
+.showcase-josh .showcase-link {
+  color: #7c3aed;
+}
+.mock-josh {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffd6ec, #d6e9ff);
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(124,58,237,0.1);
+}
+.mock-cursor {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 0;
+  background: #7c3aed;
+  animation: wiggle 2.5s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(20px,-10px) rotate(15deg); }
+}
+.mock-pill {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #7c3aed;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(124,58,237,0.25);
+}
+
+/* ---------- 03 Brittany Chiang: dark navy, monospace, terminal ---------- */
+
+.showcase-brittany {
+  background: #0a192f;
+  color: #ccd6f6;
+}
+.showcase-brittany h2 {
+  color: #e6f1ff;
+}
+.showcase-brittany .showcase-role,
+.showcase-brittany .showcase-blurb {
+  color: #8892b0;
+}
+.showcase-brittany .showcase-link {
+  color: #64ffda;
+}
+.mock-brittany {
+  width: 100%;
+  height: 100%;
+  background: #112240;
+}
+.mock-terminal {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.25rem;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+.mock-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4a5578;
+  margin-right: 6px;
+}
+.mock-lines {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #ccd6f6;
+  font-size: 0.85rem;
+}
+.mock-accent {
+  color: #64ffda;
+}
+
+/* ---------- 04 Lee Robinson: radically minimal ---------- */
+
+.showcase-lee {
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.showcase-lee h2 {
+  color: #000;
+  font-weight: 600;
+}
+.showcase-lee .showcase-link {
+  color: #000;
+}
+.mock-lee {
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mock-rule {
+  width: 60%;
+  height: 1px;
+  background: #000;
+  position: relative;
+}
+.mock-rule::before,
+.mock-rule::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+}
+.mock-rule::before { top: -24px; }
+.mock-rule::after { top: 24px; }
+
+/* ---------- 05 Daniel Spatzek: swiss grid, type-driven ---------- */
+
+.showcase-daniel {
+  background: #f2f2f0;
+}
+.showcase-daniel h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.02em;
+}
+.showcase-daniel .showcase-link {
+  color: #111;
+}
+.mock-daniel {
+  width: 100%;
+  height: 100%;
+  background: #111;
+  color: #f2f2f0;
+}
+.mock-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  border-left: 1px solid #444;
+}
+.mock-grid span {
+  display: flex;
+  align-items: center;
+  padding-left: 1.25rem;
+  border-bottom: 1px solid #444;
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+.mock-grid span:last-child {
+  border-bottom: none;
+}
+
+/* ---------- 06 Tobias van Schneider: bold, illustrated, earthy ---------- */
+
+.showcase-tobias {
+  background: #fbeee0;
+}
+.showcase-tobias h2 {
+  color: #b5461b;
+  font-family: Georgia, serif;
+}
+.showcase-tobias .showcase-link {
+  color: #b5461b;
+}
+.mock-tobias {
+  width: 100%;
+  height: 100%;
+  background: #b5461b;
+  position: relative;
+}
+.mock-shape {
+  position: absolute;
+}
+.mock-shape-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffcf56;
+  top: 18%;
+  left: 12%;
+}
+.mock-shape-square {
+  width: 80px;
+  height: 80px;
+  background: #2c2c2c;
+  top: 45%;
+  left: 55%;
+  transform: rotate(12deg);
+}
+
+/* ---------- 07 Bruno Simon: 3D, playful, night scene ---------- */
+
+.showcase-bruno {
+  background: #05060f;
+  color: #e6e9ff;
+}
+.showcase-bruno h2 {
+  color: #7cf7ff;
+}
+.showcase-bruno .showcase-role,
+.showcase-bruno .showcase-blurb {
+  color: #9aa0c9;
+}
+.showcase-bruno .showcase-link {
+  color: #ff7cc9;
+}
+.mock-bruno {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, #171b3a, #05060f 70%);
+  position: relative;
+  overflow: hidden;
+}
+.mock-scene {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.mock-ground {
+  position: absolute;
+  bottom: 0;
+  left: -20%;
+  width: 140%;
+  height: 45%;
+  background: #12163a;
+  transform: perspective(200px) rotateX(45deg);
+  border-top: 2px solid #7cf7ff33;
+}
+.mock-car {
+  position: absolute;
+  bottom: 22%;
+  left: 40%;
+  width: 46px;
+  height: 24px;
+  background: #ff7cc9;
+  border-radius: 6px;
+  box-shadow: 0 0 24px #ff7cc9aa;
+  animation: drive 3.5s ease-in-out infinite;
+}
+@keyframes drive {
+  0%, 100% { left: 20%; }
+  50% { left: 60%; }
+}
