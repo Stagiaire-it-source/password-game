@@ -1,71 +1,67 @@
 import { useState, useEffect } from 'react'
-import PasswordInput from '../components/PasswordInput'
+import '../assets/login.css'
 import UsernameInput from '../components/UsernameInput'
+import PasswordInput from '../components/PasswordInput'
+import SubmitButton from '../components/SubmitButton'
 import checkUsername from '../logic/usernameRules'
-import {checkPassword, confirmPassword }from '../logic/passwordRules'
+import checkPassword from '../logic/passwordRules'
 
 function Login() {
-    const [step, setStep] = useState("login");
+    
 
     const [username, setUsername] = useState('');
-    const [usernameError, setUsernameError] = useState('');
-    useEffect(() => {setUsernameError(checkUsername(username));}, [username]);
+    const [usernameChecks, setUsernameChecks] = useState([]);
+    useEffect(() => {
+    setUsernameChecks(checkUsername(username));
+    }, [username]);
 
     const [password, setPassword] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-    useEffect(() => {setPasswordError(checkPassword(password));}, [password]);
-
-    const [confirmPassword, setconfirmPassword] = useState('');
-    const [confPassMess, setconfPassMess] = useState('');
-    useEffect(() => {setconfPassMess(confirmPassword(confirmPassword, password));}, [confirmPassword, password]);
+    const [passwordChecks, setPasswordChecks] = useState([]);
+    useEffect(() => {
+    setPasswordChecks(checkPassword(password));
+    }, [password]);
 
 
+
+    // handle
     const handleSubmit = (e) => {
     e.preventDefault();
-    const hasError = usernameError || passwordError;
+    const isDone = (checks) => checks.length > 0 && checks[checks.length - 1].valid;
+    const hasError = !isDone(usernameChecks) || !isDone(passwordChecks);
     if (hasError) return;
-    setStep("confirm"); // the key
+
     };
 
-    const confirmSubmit = (e) => {
-    e.preventDefault();
-    const hasError = confPassMess !== "Password confirmed";
-    if (hasError) return;
-    setStep("success");
-    };
-
-    if (step === "confirm") {
     return (
-        <div>
-        <h1>Confirm Password</h1>
-        <form onSubmit={confirmSubmit}>
-        <PasswordInput value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} />
-        {confirmPassword && confPassMess && <p className="error">{confPassMess}</p>}
-        <button type="submit">Confirm</button>
-        </form>
-        </div>
-    );
-    }
+            <div>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
 
-    if (step === "success") {
-        return(
-            <landingPage />
+            <UsernameInput value={username} onChange={(e) => setUsername(e.target.value)} />
+            {username && (
+            <div className="password-rules">
+                {usernameChecks.map((check) => (
+                <p key={check.id} className={check.valid ? 'success' : 'error'}>
+                    {check.label}
+                </p>
+                ))}
+            </div>
+            )}
+    
+            <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
+            {password && (
+                <div className="password-rules">
+                    {passwordChecks.map((check) => (
+                    <p key={check.id} className={check.valid ? 'success' : 'error'}>
+                    {check.label}
+                    </p>
+                    ))}
+                </div>
+            )}
+            <SubmitButton label ="Login" />
+        </form>
+
+            </div>
         );
     }
-
-  return (
-    <>
-    <h1>Login</h1>
-    <form  onSubmit={handleSubmit}>
-      <UsernameInput value={username} onChange={(e) => setUsername(e.target.value)} />
-          {username && usernameError && <p className="error">{usernameError}</p>}
-
-      <PasswordInput value={password} onChange={(e) => setPassword(e.target.value)} />
-          {password && passwordError && <p className="error">{passwordError}</p>}
-
-      <button type="submit">Login</button>
-    </form>
-    </>
-  )
-}
 export default Login

@@ -1,5 +1,6 @@
 import React from "react";
 function landingPage() {
+
   return (
    <div>
      <h1>Welcome to the Landing Page</h1>
